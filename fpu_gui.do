@@ -7,7 +7,7 @@ grid [ttk::label .c.operandA -text "A:"] -column 2 -row 1 -sticky w -pady 10
 grid [ttk::entry .c.operandAv -textvariable opa] -column 2 -row 2 -sticky w 
 grid [ttk::label .c.operandB -text "B:"] -column 2 -row 3 -sticky w -pady 10
 grid [ttk::entry .c.operandBv -textvariable opb] -column 2 -row 4 -sticky w 
-grid [ttk::label .c.operationLabel -text "op"] -column 1 -row 2 -padx 25
+grid [ttk::label .c.operationLabel -text "op"] -column 1 -row 2 -padx 25 
 grid [ttk::entry .c.operation -width 4 -textvariable "op"] -column 1 -row 3 -padx 25
 grid [ttk::label .c.separator -text "___________________________"] -column 2 -row 5 -sticky w
 grid [ttk::label .c.resultLabel -text "result"] -column 1 -row 6 -padx 25
@@ -45,8 +45,9 @@ proc execute {{a 1}} \
 {
 	if { $a == 1 } {
 		run 1000
-		set res_ [examine -binary o]
-		set ::result [exec python3 ./bi.py $res_];
+		set res [examine -hexadecimal o]
+		set ::result [exec python3 ./bi.py $res]
+
 	} else {
 		set ::result "use a valid symbol";		
 	}
